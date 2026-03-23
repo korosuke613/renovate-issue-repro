@@ -30,6 +30,24 @@ jobs:
           private-key: ${{ secrets.RENOVATE_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
 
+      - name: List permission with the token
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh api \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28 " \
+          /apps/${{ steps.app-token.outputs.app-slug }} | jq
+
+      - name: List repositories accessible with the token
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh api \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /installation/repositories | jq
+
       - name: Run Renovate
         env:
           LOG_LEVEL: debug
