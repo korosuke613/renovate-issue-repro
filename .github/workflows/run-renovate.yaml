@@ -37,7 +37,7 @@ jobs:
           gh api \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28 " \
-          /apps/${{ steps.app-token.outputs.app-slug }} | jq
+          /apps/${{ steps.app-token.outputs.app-slug }} | jq '.permissions'
 
       - name: List repositories accessible with the token
         env:
@@ -46,7 +46,7 @@ jobs:
           gh api \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          /installation/repositories | jq
+          /installation/repositories | jq -r '[.repositories[].full_name] | join(" ")'
 
       - name: Run Renovate
         env:
