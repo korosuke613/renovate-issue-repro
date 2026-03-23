@@ -3,4 +3,4 @@ on:
   workflow_dispatch:
 jobs:
   call-reusable:
-    uses: korosuke613/renovate-issue-repro-private/.github/workflows/reusable.yaml@13b5bb473f1fd070f1e0b8e98e45d662ef4f402a # v1.0.0
+    uses: korosuke613/renovate-issue-repro-private/.github/workflows/reusable.yaml@561c339666715488637776df1c21511ec91346d8 # v1.1.0
