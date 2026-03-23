@@ -1,4 +1,6 @@
 name: Run Renovate
+run-name: Run Renovate(${{ inputs.renovate_version }})
+
 on:
   workflow_dispatch:
     inputs:
